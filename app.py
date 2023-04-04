@@ -1,4 +1,8 @@
 import streamlit as st
+import os
+import openai 
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Define a text input field
 text_input = st.text_input('Enter your name')
@@ -11,5 +15,14 @@ submit_button = st.button('Submit')
 
 # Handle button click event
 if submit_button:
-    prompt = 'Hello, {}! You selected {} on the slider.'.format(text_input, slider_val)
-    st.write(prompt)
+    promp = 'Generate {} Questions with the topic of {}'.format(slider_val, text_input,)
+    response = openai.Completion.create(
+    model="text-davinci-003",
+    prompt=promp,
+    temperature=0.7,
+    max_tokens=64,
+    top_p=1.0,
+    frequency_penalty=0.0,
+    presence_penalty=0.0
+    )
+    st.write(response)
