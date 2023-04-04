@@ -20,9 +20,9 @@ if submit_button:
     model="text-davinci-003",
     prompt=promp,
     temperature=0.7,
-    max_tokens=64,
+    max_tokens=1000,
     top_p=1.0,
     frequency_penalty=0.0,
     presence_penalty=0.0
     )
-    st.write(response)
+    st.write(response.choices[0].text)
