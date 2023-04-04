@@ -11,4 +11,5 @@ submit_button = st.button('Submit')
 
 # Handle button click event
 if submit_button:
-    st.write('Hello, {}! You selected {} on the slider.'.format(text_input, slider_val))
+    prompt = 'Hello, {}! You selected {} on the slider.'.format(text_input, slider_val)
+    st.write(prompt)
