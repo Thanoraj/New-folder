@@ -13,16 +13,19 @@ slider_val = st.slider('Select a value', 1, 5, 1)
 # Define a submit button
 submit_button = st.button('Submit')
 
-# Handle button click event
-if submit_button:
-    promp = 'Generate {} Questions with the topic of {}'.format(slider_val, text_input,)
-    response = openai.Completion.create(
-    model="text-davinci-003",
-    prompt=promp,
-    temperature=0.7,
-    max_tokens=1000,
-    top_p=1.0,
-    frequency_penalty=0.0,
-    presence_penalty=0.0
-    )
-    st.write(response.choices[0].text)
+# Define an expander
+with st.beta_expander('See Response'):
+
+    # Handle button click event
+    if submit_button:
+        prompt = f'Explain {slider_val} {text_input}'
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=prompt,
+            temperature=0.7,
+            max_tokens=1000,
+            top_p=1.0,
+            frequency_penalty=0.0,
+            presence_penalty=0.0
+        )
+        st.write(response.choices[0].text)
